@@ -101,6 +101,10 @@ function showView(view){
 document.querySelectorAll('[data-view]').forEach(el =>
   el.addEventListener('click', () => showView(el.dataset.view)));
 
+/* ---- spotlight: open product panel ---- */
+document.querySelectorAll('[data-open]').forEach(el =>
+  el.addEventListener('click', () => openPanel(el.dataset.open)));
+
 /* ---- contactgegevens invullen ---- */
 (function(){
   const e = document.getElementById('c-email');

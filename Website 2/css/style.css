@@ -25,13 +25,13 @@ a{color:inherit}
 /* slanke bovenbalk met alleen de tabs */
 .topnav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:2px}
 .nav-left,.nav-right{display:flex;gap:4px}
-.tab{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  border:none;background:transparent;color:var(--bone-dim);padding:8px 12px;border-radius:999px;cursor:pointer;transition:.18s}
+.tab{font-family:'Spline Sans Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  border:none;background:transparent;color:var(--bone-dim);padding:12px 18px;border-radius:999px;cursor:pointer;transition:.18s}
 .tab:hover{color:var(--bone)}
 .tab.active{background:var(--taupe);color:var(--ink)}
 
 /* logo: compact en gecentreerd, strak boven de foto */
-.logo-banner{display:block;height:clamp(75px,10.5vw,120px);width:auto;max-width:100%;margin:0 auto 4px}
+.logo-banner{display:block;height:clamp(75px,10.5vw,120px);width:auto;max-width:100%;margin:8px auto 30px}
 
 .lead{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(26px,4.4vw,44px);line-height:1.04;letter-spacing:-.01em;max-width:20ch;margin:8px 0 6px}
 .lead em{font-style:italic;color:var(--taupe)}
@@ -218,3 +218,40 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;font-si
 .foot-icon{display:inline-flex;vertical-align:middle;color:var(--taupe);transition:.16s}
 .foot-icon svg{width:17px;height:17px}
 .foot-icon:hover{color:var(--bone)}
+
+/* ---- spotlight ---- */
+.spotlight{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:40px 0 10px;
+  background:var(--ox);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.spot-media{background:var(--studio);min-height:340px}
+.spot-media img{width:100%;height:100%;object-fit:cover;display:block}
+.spot-text{padding:40px 42px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.spot-title{font-family:'Fraunces',serif;font-weight:700;font-size:32px;line-height:1.05;margin:2px 0 8px}
+.spot-story{font-size:15px;line-height:1.65;color:var(--bone-dim);margin:0 0 12px}
+.spot-price{font-family:'Spline Sans Mono',monospace;font-weight:600;font-size:24px;color:var(--brass-lite);margin-bottom:16px}
+.spot-price small{font-family:'Archivo',sans-serif;font-weight:400;font-size:12px;color:var(--bone-dim)}
+.spot-btn{align-self:flex-start;font-family:'Archivo',sans-serif;font-weight:600;font-size:14px;padding:13px 24px;border-radius:9px;
+  cursor:pointer;border:1px solid var(--taupe);background:var(--taupe);color:var(--ink);transition:.16s}
+.spot-btn:hover{background:var(--taupe-d);border-color:var(--taupe-d)}
+@media(max-width:760px){.spotlight{grid-template-columns:1fr}.spot-media{min-height:280px}.spot-text{padding:30px 26px}}
+
+/* ---- explore grid ---- */
+.explore{margin:56px 0 10px}
+.explore-h{font-family:'Fraunces',serif;font-weight:700;font-size:30px;text-align:center;margin:2px 0 26px}
+.explore-grid{display:grid;grid-template-columns:1.1fr 1fr;grid-template-rows:1fr 1fr;gap:16px;min-height:520px}
+.ex-card{display:flex;text-decoration:none;background:var(--ox);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s;text-align:left;padding:0;color:var(--bone)}
+.ex-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--taupe)}
+.ex-img{background-size:cover;background-position:center;display:block}
+.ex-txt{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:22px 24px}
+.ex-eye{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe)}
+.ex-title{font-family:'Fraunces',serif;font-weight:700;font-size:23px;line-height:1.05}
+.ex-sub{font-size:13.5px;color:var(--bone-dim);line-height:1.5}
+/* big card: image top, text below */
+.ex-card.big{grid-row:1 / 3;flex-direction:column}
+.ex-card.big .ex-img{flex:1;width:100%;min-height:240px}
+.ex-card.big .ex-txt{padding:24px 28px 28px;align-items:flex-start}
+.ex-card.big .ex-title{font-size:28px}
+/* small cards: image left, text right */
+.ex-card:not(.big){flex-direction:row}
+.ex-card:not(.big) .ex-img{width:44%;min-width:44%}
+@media(max-width:720px){.explore-grid{grid-template-columns:1fr;grid-template-rows:none;min-height:0}.ex-card.big{grid-row:auto}.ex-card:not(.big){flex-direction:column}.ex-card:not(.big) .ex-img{width:100%;min-height:180px}}
