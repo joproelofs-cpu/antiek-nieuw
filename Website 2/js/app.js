@@ -117,3 +117,13 @@ document.querySelectorAll('[data-tiktok]').forEach(el => { if (CONTACT.tiktok) e
 
 renderRoom();
 renderGrid();
+
+/* ---- intro: Enter House ---- */
+(function(){
+  const intro = document.getElementById('intro');
+  const btn = document.getElementById('enter-house');
+  if (btn && intro) btn.addEventListener('click', () => {
+    intro.classList.add('gone');
+    setTimeout(() => { intro.style.display = 'none'; }, 650);
+  });
+})();
