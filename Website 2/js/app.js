@@ -128,13 +128,24 @@ document.querySelectorAll('[data-tiktok]').forEach(el => { if (CONTACT.tiktok) e
 renderRoom();
 renderGrid();
 
-/* ---- intro: Enter House ---- */
+/* ---- welcome: Antique / Mid Century / All Products ---- */
 (function(){
   const intro = document.getElementById('intro');
-  const btn = document.getElementById('enter-house');
-  if (btn && intro) btn.addEventListener('click', () => {
+  if (!intro) return;
+  function enter(view){
+    if (view) showView(view);
     intro.classList.add('gone');
     setTimeout(() => { intro.style.display = 'none'; }, 650);
+  }
+  document.getElementById('go-antique')?.addEventListener('click', () => enter('showroom'));
+  document.getElementById('go-allproducts')?.addEventListener('click', () => enter('producten'));
+  document.getElementById('go-midcentury')?.addEventListener('click', () => {
+    if (!document.getElementById('mc-soon')) {
+      const n = document.createElement('p');
+      n.id = 'mc-soon'; n.className = 'mc-soon';
+      n.textContent = 'Mid Century \u2014 coming soon';
+      intro.appendChild(n);
+    }
   });
 })();
 
