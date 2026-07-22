@@ -82,9 +82,15 @@ function openPanel(id){
   document.getElementById('story').textContent = p.verhaal;
   document.getElementById('price').innerHTML = p.prijs + (p.prijsNoot ? ` <small>${p.prijsNoot}</small>` : '');
   const cta = document.getElementById('cta');
-  cta.innerHTML = p.betaallink
-    ? `<a class="primary" href="${p.betaallink}">Buy now</a><a class="ghost" href="${inquiryHref(p)}">Ask a question</a>`
-    : `<a class="primary" href="${inquiryHref(p)}">Reserve / enquire</a>`;
+  const mollie = (typeof CHECKOUT !== 'undefined' && CHECKOUT.mollie);
+  if (mollie) {
+    cta.innerHTML = `<a class="primary" href="/api/pay?id=${encodeURIComponent(p.id)}">Buy now</a>`
+                  + `<a class="ghost" href="${inquiryHref(p)}">Ask a question</a>`;
+  } else {
+    cta.innerHTML = p.betaallink
+      ? `<a class="primary" href="${p.betaallink}">Buy now</a><a class="ghost" href="${inquiryHref(p)}">Ask a question</a>`
+      : `<a class="primary" href="${inquiryHref(p)}">Reserve / enquire</a>`;
+  }
   panel.classList.add('open'); scrim.classList.add('open');
 }
 function closePanel(){ panel.classList.remove('open'); scrim.classList.remove('open'); }
@@ -130,4 +136,18 @@ renderGrid();
     intro.classList.add('gone');
     setTimeout(() => { intro.style.display = 'none'; }, 650);
   });
+})();
+
+/* ---- betaal-bevestiging na terugkeer van Mollie ---- */
+(function(){
+  const params = new URLSearchParams(location.search);
+  if (params.has('paid')) {
+    const s = document.getElementById('view-showroom');
+    if (s) {
+      const n = document.createElement('div');
+      n.className = 'paid-note';
+      n.textContent = 'Thank you! We received your request and will confirm your order by email.';
+      s.insertBefore(n, s.firstChild);
+    }
+  }
 })();

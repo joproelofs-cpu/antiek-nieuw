@@ -255,3 +255,15 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;font-si
 .ex-card:not(.big){flex-direction:row}
 .ex-card:not(.big) .ex-img{width:44%;min-width:44%}
 @media(max-width:720px){.explore-grid{grid-template-columns:1fr;grid-template-rows:none;min-height:0}.ex-card.big{grid-row:auto}.ex-card:not(.big){flex-direction:column}.ex-card:not(.big) .ex-img{width:100%;min-height:180px}}
+
+/* ---- grote social-iconen ---- */
+.socials{display:flex;justify-content:center;gap:clamp(28px,7vw,80px);margin:56px 0 20px;flex-wrap:wrap}
+.social{display:flex;flex-direction:column;align-items:center;gap:14px;text-decoration:none;color:var(--taupe);transition:.18s}
+.social svg{width:clamp(78px,13vw,120px);height:clamp(78px,13vw,120px)}
+.social-label{font-family:'Spline Sans Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim)}
+.social:hover{color:var(--bone);transform:translateY(-4px)}
+.social:hover .social-label{color:var(--bone)}
+
+/* betaal-bevestiging */
+.paid-note{background:var(--taupe);color:var(--ink);text-align:center;padding:12px 16px;border-radius:10px;
+  font-family:'Archivo',sans-serif;font-weight:600;margin:0 0 14px}

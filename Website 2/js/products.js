@@ -16,6 +16,10 @@ const CONTACT = {
   tiktok:   "https://www.tiktok.com/@collectors.room"
 };
 
+// Checkout via Mollie (secure Cloudflare Pages Function at /api/pay).
+// The API key is NOT here — it lives in Cloudflare's environment variables.
+const CHECKOUT = { mollie: true };
+
 const PRODUCTS = [
   {
     id: "kapstok",
