@@ -13,7 +13,10 @@ const PRODUCTS = {
   spiegel:  { value: "2200.00", name: "Gilded floor mirror, oval" },
   fauteuil: { value: "1650.00", name: "Black & white swivel chair" },
   tafel:    { value: "1900.00", name: "Wooden coffee table" },
-  rolkast:  { value: "1450.00", name: "Op-art rolling cabinet" }
+  rolkast:  { value: "1450.00", name: "Op-art rolling cabinet" },
+  mc_lounge:{ value: "1250.00", name: "Orange & yellow swivel lounge chair" },
+  mc_bar:   { value: "1450.00", name: "Chrome & smoked-glass bar cart" },
+  mc_green: { value: "680.00",  name: "Green leather office chair" }
 };
 
 export async function onRequestGet(context) {
