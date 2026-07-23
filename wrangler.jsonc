@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "antiek-nieuw",
+  "compatibility_date": "2026-07-23",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "Website 2"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
