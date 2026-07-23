@@ -278,3 +278,37 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;font-si
 /* betaal-bevestiging */
 .paid-note{background:var(--taupe);color:var(--ink);text-align:center;padding:12px 16px;border-radius:10px;
   font-family:'Archivo',sans-serif;font-weight:600;margin:0 0 14px}
+
+/* ---- showroom dropdown (Antique / Mid Century) ---- */
+.dropdown{position:relative;display:inline-block}
+.dd-toggle{display:inline-flex;align-items:center;gap:7px}
+.dd-caret{font-size:10px;transition:transform .18s}
+.dropdown.open .dd-caret{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 6px);left:0;min-width:180px;background:var(--ox);border:1px solid var(--line);
+  border-radius:12px;padding:6px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:.16s;z-index:60;display:flex;flex-direction:column}
+.dropdown.open .dd-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.dd-item{font-family:'Spline Sans Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--bone);text-decoration:none;padding:12px 14px;border-radius:8px;transition:.14s}
+.dd-item:hover{background:var(--taupe);color:var(--ink)}
+
+/* ---- product page (PDP) ---- */
+.pdp{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin:22px 0 48px;align-items:start}
+.pdp-media{background:var(--studio);border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.pdp-media img{width:100%;height:auto;display:block;aspect-ratio:4/3;object-fit:cover}
+.pdp-info{padding-top:4px}
+.pdp-info .pname{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,4vw,40px);line-height:1.05;margin:6px 0 16px}
+.pdp-info .price{font-size:28px;margin:10px 0 4px}
+.ship-calc{border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:22px 0}
+.ship-label{display:block;font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:10px}
+.ship-select{width:100%;font-family:'Archivo',sans-serif;font-size:15px;padding:12px 14px;border-radius:9px;border:1px solid var(--line);background:var(--ox-deep);color:var(--bone);cursor:pointer}
+.ship-lines{margin-top:16px;display:flex;flex-direction:column;gap:9px;font-size:14px;color:var(--bone-dim)}
+.ship-lines > div{display:flex;justify-content:space-between;gap:16px}
+.ship-total{border-top:1px solid var(--line);padding-top:11px;margin-top:2px;font-family:'Fraunces',serif;font-weight:700;font-size:20px;color:var(--bone)}
+.pdp .cta{margin-top:6px}
+.pdp .cta .primary,.pdp .cta .ghost{flex:1;min-width:150px;text-align:center;text-decoration:none;font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;padding:15px 18px;border-radius:9px;border:1px solid var(--taupe);transition:.16s}
+.pdp .cta .primary{background:var(--taupe);color:var(--ink)}
+.pdp .cta .primary:hover{background:var(--taupe-d);border-color:var(--taupe-d)}
+.pdp .cta .ghost{background:transparent;color:var(--bone);border-color:var(--line)}
+.pdp .cta .ghost:hover{border-color:var(--taupe);color:var(--taupe)}
+@media(max-width:760px){.pdp{grid-template-columns:1fr;gap:22px}}

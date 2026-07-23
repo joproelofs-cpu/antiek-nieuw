@@ -15,11 +15,16 @@
 <div class="wrap">
   <nav class="topnav" aria-label="Menu">
     <div class="nav-left">
-      <a class="tab" href="index.html">← Antique</a>
       <button class="tab" data-view="contact">Contact</button>
     </div>
     <div class="nav-right">
-      <button class="tab active" data-view="showroom">Showroom</button>
+      <div class="dropdown">
+        <button class="tab dd-toggle" aria-haspopup="true" aria-expanded="false">Showroom <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a class="dd-item" href="index.html?enter=1" data-world="antique">Antique</a>
+          <a class="dd-item" href="midcentury.html" data-world="midcentury">Mid Century</a>
+        </div>
+      </div>
       <button class="tab" data-view="producten">All Products</button>
       <button class="tab" data-view="about">About us</button>
     </div>
@@ -206,7 +211,8 @@
   </div>
 </aside>
 
-<script src="js/products-mc.js"></script>
+<script>window.CR_COLLECTION='midcentury';</script>
+<script src="js/catalog.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

@@ -3,6 +3,10 @@
    Inhoud staat in products.js — dit bestand hoef je niet te bewerken. */
 
 const TIER_LABEL = { A:"Entry piece", B:"Mid-range", C:"Signature piece" };
+const COLLECTION = (window.CR_COLLECTION === 'midcentury') ? 'midcentury' : 'antique';
+const PRODUCTS = CATALOG.filter(p => p.collection === COLLECTION);
+const ROOMS = (COLLECTION === 'midcentury') ? ROOMS_MC : ROOMS_ANTIQUE;
+const productUrl = id => 'product.html?id=' + encodeURIComponent(id);
 const byId   = id => PRODUCTS.find(p => p.id === id);
 const roomById = id => ROOMS.find(r => r.id === id);
 let currentRoom = ROOMS[0].id;
@@ -61,7 +65,7 @@ function renderGrid(){
       </div>
     </article>`).join('');
   grid.querySelectorAll('.card').forEach(c => {
-    const open = () => openPanel(c.dataset.id);
+    const open = () => { location.href = productUrl(c.dataset.id); };
     c.addEventListener('click', open);
     c.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }});
   });
@@ -82,15 +86,8 @@ function openPanel(id){
   document.getElementById('story').textContent = p.verhaal;
   document.getElementById('price').innerHTML = p.prijs + (p.prijsNoot ? ` <small>${p.prijsNoot}</small>` : '');
   const cta = document.getElementById('cta');
-  const mollie = (typeof CHECKOUT !== 'undefined' && CHECKOUT.mollie);
-  if (mollie) {
-    cta.innerHTML = `<a class="primary" href="/api/pay?id=${encodeURIComponent(p.id)}">Buy now</a>`
-                  + `<a class="ghost" href="${inquiryHref(p)}">Ask a question</a>`;
-  } else {
-    cta.innerHTML = p.betaallink
-      ? `<a class="primary" href="${p.betaallink}">Buy now</a><a class="ghost" href="${inquiryHref(p)}">Ask a question</a>`
-      : `<a class="primary" href="${inquiryHref(p)}">Reserve / enquire</a>`;
-  }
+  cta.innerHTML = `<a class="primary" href="${productUrl(p.id)}">View &amp; buy \u2192</a>`
+                + `<a class="ghost" href="${inquiryHref(p)}">Ask a question</a>`;
   panel.classList.add('open'); scrim.classList.add('open');
 }
 function closePanel(){ panel.classList.remove('open'); scrim.classList.remove('open'); }
@@ -109,7 +106,7 @@ document.querySelectorAll('[data-view]').forEach(el =>
 
 /* ---- spotlight: open product panel ---- */
 document.querySelectorAll('[data-open]').forEach(el =>
-  el.addEventListener('click', () => openPanel(el.dataset.open)));
+  el.addEventListener('click', () => { location.href = productUrl(el.dataset.open); }));
 
 /* ---- contactgegevens invullen ---- */
 (function(){
@@ -155,5 +152,31 @@ renderGrid();
       n.textContent = 'Thank you! We received your request and will confirm your order by email.';
       s.insertBefore(n, s.firstChild);
     }
+  }
+})();
+
+/* ---- showroom dropdown: switch between Antique & Mid Century ---- */
+(function(){
+  const dd = document.querySelector('.dropdown');
+  const toggle = document.querySelector('.dd-toggle');
+  if (dd && toggle){
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', dd.classList.contains('open'));
+    });
+    document.addEventListener('click', () => dd.classList.remove('open'));
+  }
+  const current = location.pathname.indexOf('midcentury') !== -1 ? 'midcentury' : 'antique';
+  document.querySelectorAll('.dd-item').forEach(a => {
+    a.addEventListener('click', (e) => {
+      if (a.dataset.world === current){ e.preventDefault(); showView('showroom'); dd && dd.classList.remove('open'); }
+    });
+  });
+  const params = new URLSearchParams(location.search);
+  if (params.has('enter') || params.has('view')){
+    const intro = document.getElementById('intro');
+    if (intro) intro.style.display = 'none';
+    showView(params.get('view') || 'showroom');
   }
 })();
